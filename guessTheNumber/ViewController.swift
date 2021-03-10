@@ -64,21 +64,13 @@ class ViewController: UIViewController {
         let attributedString = NSMutableAttributedString(string: label.text!)
         
         if label == descriptionLabel {
-            attributedString.addAttribute(.font, value: UIFont(name: "Chalkduster", size: 18.0)!, range: NSMakeRange(9, 1))
-            attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: NSMakeRange(9, 1))
-            
-            attributedString.addAttribute(.font, value: UIFont(name: "Chalkduster", size: 18.0)!, range: NSMakeRange(label.text!.count - 4 - String(smallNumber).count - String(bigNumber).count, String(smallNumber).count))
-            attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: NSMakeRange(label.text!.count - 4 - String(smallNumber).count - String(bigNumber).count, String(smallNumber).count))
-            
-            attributedString.addAttribute(.font, value: UIFont(name: "Chalkduster", size: 18.0)!, range: NSMakeRange(label.text!.count - String(bigNumber).count, String(bigNumber).count))
-            attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: NSMakeRange(label.text!.count - String(bigNumber).count, String(bigNumber).count))
-            
+            attributedString.setAttributes([.font: UIFont(name: "Chalkduster", size: 18.0)!, .foregroundColor: UIColor.red], range: NSMakeRange(9, 1))
+            attributedString.setAttributes([.font: UIFont(name: "Chalkduster", size: 18.0)!, .foregroundColor: UIColor.red], range: NSMakeRange(label.text!.count - 4 - String(smallNumber).count - String(bigNumber).count, String(smallNumber).count))
+            attributedString.setAttributes([.font: UIFont(name: "Chalkduster", size: 18.0)!, .foregroundColor: UIColor.red], range: NSMakeRange(label.text!.count - String(bigNumber).count, String(bigNumber).count))
         } else if label == alertLabel && label.text!.contains("Del") {
             if label.text != ""{
-                attributedString.addAttribute(.font, value: UIFont(name: "Chalkduster", size: 18.0)!, range: NSMakeRange(11, 1))
-                attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: NSMakeRange(11, 1))
-                attributedString.addAttribute(.font, value: UIFont(name: "Chalkduster", size: 18.0)!, range: NSMakeRange(label.text!.count - 5, 3))
-                attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: NSMakeRange(label.text!.count - 5, 3))
+                attributedString.setAttributes([.font: UIFont(name: "Chalkduster", size: 18.0)!, .foregroundColor: UIColor.red], range: NSMakeRange(11, 1))
+                attributedString.setAttributes([.font: UIFont(name: "Chalkduster", size: 18.0)!, .foregroundColor: UIColor.red], range: NSMakeRange(label.text!.count - 5, 3))
             }
         } else if label == alertLabel && (label.text!.contains("\(smallNumber)") || label.text!.contains("\(bigNumber)")) {
             var tempNumber = guessNumber
@@ -87,9 +79,7 @@ class ViewController: UIViewController {
             } else if guessNumber >= smallNumber {
                 tempNumber = bigNumber
             }
-            
-            attributedString.addAttribute(.font, value: UIFont(name: "Chalkduster", size: 18.0)!, range: NSMakeRange(label.text!.count - 14 - String(tempNumber).count, String(tempNumber).count + 14))
-            attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: NSMakeRange(label.text!.count - 14 - String(tempNumber).count, String(tempNumber).count + 14))
+            attributedString.setAttributes([.font: UIFont(name: "Chalkduster", size: 18.0)!, .foregroundColor: UIColor.red], range: NSMakeRange(label.text!.count - 14 - String(tempNumber).count, String(tempNumber).count + 14))
         }
         label.attributedText = attributedString
     }
