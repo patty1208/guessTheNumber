@@ -13,6 +13,10 @@
 		C944D8CC25EF3DF500DA8A63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C944D8CA25EF3DF500DA8A63 /* Main.storyboard */; };
 		C944D8CE25EF3DF600DA8A63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C944D8CD25EF3DF600DA8A63 /* Assets.xcassets */; };
 		C944D8D125EF3DF600DA8A63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C944D8CF25EF3DF600DA8A63 /* LaunchScreen.storyboard */; };
+		C944D8DC25F48AD800DA8A63 /* countDownForOneSecond.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C944D8DB25F48AD800DA8A63 /* countDownForOneSecond.mp3 */; };
+		C944D8E125F4CD0300DA8A63 /* bombSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C944D8E025F4CD0300DA8A63 /* bombSoundEffect.mp3 */; };
+		C98E3DDF25F5188300524DC3 /* correctSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C98E3DDD25F5188200524DC3 /* correctSoundEffect.mp3 */; };
+		C98E3DE025F5188300524DC3 /* wrongSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C98E3DDE25F5188200524DC3 /* wrongSoundEffect.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		C944D8CD25EF3DF600DA8A63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C944D8D025EF3DF600DA8A63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C944D8D225EF3DF600DA8A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C944D8DB25F48AD800DA8A63 /* countDownForOneSecond.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = countDownForOneSecond.mp3; sourceTree = "<group>"; };
+		C944D8E025F4CD0300DA8A63 /* bombSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bombSoundEffect.mp3; sourceTree = "<group>"; };
+		C98E3DDD25F5188200524DC3 /* correctSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correctSoundEffect.mp3; sourceTree = "<group>"; };
+		C98E3DDE25F5188200524DC3 /* wrongSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrongSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,10 @@
 		C944D8C325EF3DF500DA8A63 /* guessTheNumber */ = {
 			isa = PBXGroup;
 			children = (
+				C944D8E025F4CD0300DA8A63 /* bombSoundEffect.mp3 */,
+				C944D8DB25F48AD800DA8A63 /* countDownForOneSecond.mp3 */,
+				C98E3DDD25F5188200524DC3 /* correctSoundEffect.mp3 */,
+				C98E3DDE25F5188200524DC3 /* wrongSoundEffect.mp3 */,
 				C944D8C425EF3DF500DA8A63 /* AppDelegate.swift */,
 				C944D8C625EF3DF500DA8A63 /* SceneDelegate.swift */,
 				C944D8C825EF3DF500DA8A63 /* ViewController.swift */,
@@ -125,7 +137,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C944D8D125EF3DF600DA8A63 /* LaunchScreen.storyboard in Resources */,
+				C944D8E125F4CD0300DA8A63 /* bombSoundEffect.mp3 in Resources */,
+				C98E3DDF25F5188300524DC3 /* correctSoundEffect.mp3 in Resources */,
+				C944D8DC25F48AD800DA8A63 /* countDownForOneSecond.mp3 in Resources */,
 				C944D8CE25EF3DF600DA8A63 /* Assets.xcassets in Resources */,
+				C98E3DE025F5188300524DC3 /* wrongSoundEffect.mp3 in Resources */,
 				C944D8CC25EF3DF500DA8A63 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KZ4YU874PU;
 				INFOPLIST_FILE = guessTheNumber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,6 +325,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KZ4YU874PU;
 				INFOPLIST_FILE = guessTheNumber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
