@@ -18,14 +18,13 @@ class ViewController: UIViewController {
     var guessNumber = 0
     
     var timer: Timer?
-    var timerForStop: Timer?
+    
     var countDown: Int = 60
-    var countDownInitial: Int = 60
     
     var playerCountDown: AVPlayer?
     var playerGuess: AVPlayer?
     
-    @IBOutlet weak var explosionBackground: UIView!
+    @IBOutlet weak var explosionBackground: UIView! // 遮蓋爆炸圖下的其他畫面,只剩reset按鍵
     @IBOutlet weak var explosionImage: UIImageView!
     @IBOutlet weak var guessStateImage: UIImageView!
     @IBOutlet weak var guessNumberLabel: UILabel!
@@ -34,8 +33,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var countdownLabel: UILabel!
     
-    @IBOutlet var numberButtons: [UIButton]!
-    @IBOutlet var otherButtons: [UIButton]!
+    @IBOutlet var numberButtons: [UIButton]! // 數字鍵 1...9,0
+    @IBOutlet var otherButtons: [UIButton]! // del, enter, reset鍵
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,19 +52,8 @@ class ViewController: UIViewController {
             //            i.layer.shadowOpacity = 1
             
         }
-        descriptionLabel.text = "You have \(chances)  chances.\n\(smallNumber) to \(bigNumber)"
-        labelTextStyle(label: descriptionLabel)
-        //
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
-            self.countDownNumber()
-        }
-        
-        
-        timerForStop = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.countDown + 1), repeats: false) { (_) in
-            self.stopCountDown()
-            self.playSoundEffect(state: "bomb")
-            self.explosionAnimationImage()
-        }
+        initialValue()
+        resetCountDown()
     }
     
     //    override func viewDidDisappear(_ animated: Bool) {
@@ -149,57 +137,57 @@ class ViewController: UIViewController {
         }
     }
     
-    func countDownNumber(){
-        if self.countDown >= 0 {
-            
-            if self.countDown > 0 {
-                playSoundEffect(state: "countDown")
-            } else if self.countDown == 0 {
-                playSoundEffect(state: "bomb")
-                explosionAnimationImage()
-            }
-            
-            if self.countDown >= 10 {
-                self.countdownLabel.text = String("00 : \(self.countDown)")}
-            else {
-                self.countdownLabel.text = String("00 : 0\(self.countDown)")
-            }
-            self.countDown = self.countDown - 1
+    func countDownNumber(){ // 倒數計時炸彈 顯示時間文字和倒數聲音, 爆炸畫面和聲音
+        // 倒數計時炸彈 顯示時間文字
+        if self.countDown >= 10 {
+            self.countdownLabel.text = String("00 : \(self.countDown)")}
+        else if self.countDown >= 0{
+            self.countdownLabel.text = String("00 : 0\(self.countDown)")
         }
         
+        // 倒數計時炸彈 倒數聲和爆炸聲 和爆炸後停止倒數
+        if self.countDown >= 0 {
+            playSoundEffect(state: "countDown")
+        } else if self.countDown == -1 {
+            stopCountDown()
+            playSoundEffect(state: "bomb")
+            explosionAnimationImage()
+        }
+        self.countDown = self.countDown - 1
     }
+    
     
     func stopCountDown(){
         timer?.invalidate()
-        timerForStop?.invalidate()
     }
     
     func resetCountDown(){
-        countDown = 60
         stopCountDown()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
             self.countDownNumber()
         }
-        timerForStop = Timer.scheduledTimer(withTimeInterval: TimeInterval(countDown+1), repeats: false) { (_) in
-            self.stopCountDown()
-        }
     }
-    
     
     func initialValue(){
         chances = 5
         smallNumber = 0
         bigNumber = 100
         answer = Int.random(in: smallNumber + 1 ... bigNumber - 1)
+        
         guessNumberForText = ""
         guessNumber = 0
         
+        countDown = 60
+        
         alertLabel.text = ""
-        descriptionLabel.text = ""
+        descriptionLabel.text = "You have \(chances)  chances.\n\(smallNumber) to \(bigNumber)"
+        labelTextStyle(label:descriptionLabel)
         guessNumberLabel.text = ""
         guessStateImage.isHidden = false
         guessStateImage.image = UIImage(named: "question")
-        
+        countdownLabel.text = "00 : \(countDown)"
+        explosionImage.alpha = 0
+        explosionBackground.alpha = 0
         
     }
     
@@ -284,23 +272,8 @@ class ViewController: UIViewController {
         guessNumberForText = ""
     }
     @IBAction func resetBomb(_ sender: UIButton) {
-        chances = 5
-        smallNumber = 0
-        bigNumber = 100
-        answer = Int.random(in: smallNumber + 1 ... bigNumber - 1)
-        guessNumberForText = ""
-        guessNumber = 0
-        
-        alertLabel.text = ""
-        descriptionLabel.text = "You have \(chances)  chances.\n\(smallNumber) to \(bigNumber)"
-        guessNumberLabel.text = ""
-        countdownLabel.text = "00 : 60"
-        guessStateImage.isHidden = false
-        guessStateImage.image = UIImage(named: "question")
-        explosionImage.alpha = 0
-        explosionBackground.alpha = 0
+        initialValue()
         resetCountDown()
-        labelTextStyle(label: descriptionLabel)
     }
 }
 
